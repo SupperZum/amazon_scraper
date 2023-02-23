@@ -6,7 +6,7 @@ async fn main() -> WebDriverResult<()> {
     let driver = WebDriver::new("http://localhost:9515", caps).await?;
 
     driver
-        .goto("https://www.amazon.com/Eiffel-Turtleneck-Through-Leotard-Bodysuit/dp/B07H4D28YF/ref=zg_bs_1294868011_sccl_10/147-5899904-5115132?psc=1")
+        .goto("https://www.amazon.com/SHAPERX-Bodysuit-Shapewear-Sculpting-SZ5215-Black-S/dp/B0B1HR89H4/ref=zg_bs_1294868011_sccl_1/135-3072216-7795932?psc=1")
         .await?;
 
     tokio::time::sleep(Duration::from_secs(5)).await;
@@ -14,9 +14,6 @@ async fn main() -> WebDriverResult<()> {
     let element = driver.find(By::Id("sellerProfileTriggerId")).await?;
     println!("Store:\t {}\n", element.text().await?);
     element.click().await?;
-    /*  let url = element.attr("href").await?.unwrap();
-    let path = format!("https://www.amazon.com{url}");
-    driver.goto(path).await?; */
 
     let element = driver
         .find(By::ClassName(
@@ -36,8 +33,6 @@ async fn main() -> WebDriverResult<()> {
         .find(By::Id("page-section-detail-seller-info"))
         .await?;
     println!("Details: \n{}", element.text().await?);
-
-    tokio::time::sleep(Duration::from_secs(20)).await;
 
     driver.quit().await?;
 
